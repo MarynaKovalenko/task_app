@@ -1,8 +1,3 @@
-require 'capybara'
-require 'capybara/cucumber'
-require 'selenium-webdriver'
-require 'site_prism'
-
 Feature: google finds things
 
 In order to get some knowledge about a sought-for thing
