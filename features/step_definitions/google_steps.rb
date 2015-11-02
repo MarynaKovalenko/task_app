@@ -35,7 +35,7 @@ end
 
 
 Given /^a word for search and Google web-page$/ do
-    p @example = Word.new.generate_word
+    @example = Word.new.generate_word
     @page = GoogleHome.new
     @page.has_search_field?
     @page.has_search_button?
@@ -54,7 +54,7 @@ end
 
 Then /^I go to Wiki page(s) containing information about that word and make a screenshot$/ do
     @wiki_links = res_page.find_wiki_links
-    @wiki_links.each_with_index do |link, index|
+    @wiki_links.each_with_index do |link|
         visit link
         @wiki = Wiki.new
         @wiki.heading.text.downcase.include? @example
@@ -63,7 +63,6 @@ Then /^I go to Wiki page(s) containing information about that word and make a sc
 end
 
 When /^I go to the first web site from given results, but non Wiki-page$/ do
-    byebug
     visit @res_page.result_links.map{|l| l[:href]}.delete_if{|l| l.downcase.include?('wikipedia')}.first
     save_screenshot("#{}")
 end
